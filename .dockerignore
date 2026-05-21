@@ -1,0 +1,13 @@
+venv/
+.venv/
+__pycache__/
+*.pyc
+.env
+chroma_db/
+uploads/
+exports/
+.git/
+.vscode/
+.idea/
+.DS_Store
+README.md

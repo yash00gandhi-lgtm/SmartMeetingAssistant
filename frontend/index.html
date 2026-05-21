@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smart Meeting Assistant</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <header>
+    <h1>📝 Smart Meeting Assistant</h1>
+    <p>Paste meeting notes or upload a PDF — get summary, action items, follow-ups, and next steps instantly.</p>
+  </header>
+
+  <main>
+    <!-- Tabs -->
+    <nav class="tabs">
+      <button class="tab active" data-tab="process">Process Meeting</button>
+      <button class="tab" data-tab="search">Search Past Meetings</button>
+      <button class="tab" data-tab="list">All Meetings</button>
+    </nav>
+
+    <!-- 1. Process Meeting -->
+    <section id="tab-process" class="tab-panel active">
+      <div class="card">
+        <h2>1. Provide Meeting Notes</h2>
+        <input type="text" id="meetingTitle" placeholder="Meeting title (e.g. 'Sprint Planning - May 20')" />
+
+        <div class="input-modes">
+          <label>
+            <input type="radio" name="mode" value="text" checked /> Paste Text
+          </label>
+          <label>
+            <input type="radio" name="mode" value="pdf" /> Upload PDF
+          </label>
+        </div>
+
+        <textarea id="notesText" rows="10" placeholder="Paste the full meeting notes here..."></textarea>
+        <input type="file" id="pdfInput" accept="application/pdf" style="display:none;" />
+
+        <button id="processBtn">Process Meeting</button>
+        <div id="processStatus" class="status"></div>
+      </div>
+
+      <!-- Results -->
+      <div class="card" id="resultsCard" style="display:none;">
+        <h2>2. Results</h2>
+        <p class="muted">Meeting ID: <code id="currentMeetingId"></code></p>
+
+        <div class="result-block">
+          <h3>📋 Summary</h3>
+          <div id="rSummary" class="result-text"></div>
+        </div>
+        <div class="result-block">
+          <h3>✅ Action Items</h3>
+          <div id="rActions" class="result-text"></div>
+        </div>
+        <div class="result-block">
+          <h3>❓ Follow-up Questions</h3>
+          <div id="rFollowUps" class="result-text"></div>
+        </div>
+        <div class="result-block">
+          <h3>➡️ Next Steps</h3>
+          <div id="rNextSteps" class="result-text"></div>
+        </div>
+
+        <button id="exportBtn">⬇️ Export as .txt</button>
+      </div>
+    </section>
+
+    <!-- 2. Search -->
+    <section id="tab-search" class="tab-panel">
+      <div class="card">
+        <h2>Search Past Meetings (RAG)</h2>
+        <p class="muted">Ask anything about previously processed meetings.</p>
+        <input type="text" id="searchInput" placeholder="e.g. 'What did we decide about the API redesign?'" />
+        <button id="searchBtn">Search</button>
+        <div id="searchResult" class="result"></div>
+      </div>
+    </section>
+
+    <!-- 3. All meetings -->
+    <section id="tab-list" class="tab-panel">
+      <div class="card">
+        <h2>All Stored Meetings</h2>
+        <button id="refreshBtn">🔄 Refresh List</button>
+        <div id="meetingsList" class="meetings-list"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <small>FastAPI · LangChain LCEL · ChromaDB · OpenRouter / Groq · sentence-transformers</small>
+  </footer>
+
+  <script src="/static/script.js"></script>
+</body>
+</html>
