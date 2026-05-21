@@ -1,3 +1,13 @@
+---
+title: Smart Meeting Assistant
+emoji: 📝
+colorFrom: blue
+colorTo: purple
+sdk: docker
+app_port: 7860
+pinned: false
+---
+
 # 📝 Smart Meeting Assistant
 
 A FastAPI + LangChain (LCEL) app that turns meeting notes into:
